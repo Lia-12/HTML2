@@ -1,0 +1,73 @@
+<!Doctype>
+<html>
+	<head>
+		<script src="jquery-min.js"></script>
+		<script>
+		var carretera;
+		var coche;
+		var llanta;
+		var angulo=0;
+		var contexto;
+		var lienzo;
+		var posicion=0;
+		
+		
+		$(document).ready(function (event)
+		{
+			lienzo=document.getElementById("lienzo");
+			contexto=lienzo.getContext("2d");
+			carretera=document.getElementById("carretera");
+			coche=document.getElementById("coche");
+			llanta=document.getElementById("llanta");
+			update();
+			
+		});
+		function update()
+		{
+		    contexto.drawImage(carretera,0,0);
+			contexto.drawImage(coche,0,180,68,68);
+			dibujaImagenRotada(llanta,0,160,68,68,angulo);
+			angulo=(angulo+1)%360;
+			setTimeout(update,velocidad);
+		}
+		function dibujaImagenRotada(imagen,x,y,w,h,angulo)
+		{
+		    contexto.save();
+			contexto.translate(x,y);
+			contexto.rotate(angulo*Math.PI/180);
+			contexto.drawImage(imagen,w/2,h/2,w,h);
+			contexto.restore();
+			
+			contexto.drawImage(carretera,-posicion,0);
+			posicion=(posicion+10)%180;
+			contexto.drawImage(coche,x,y+(posicion/10)%2);
+		}
+		var velocidad=100;
+		$(document).ready(function (event)
+		{
+			window.addEventListener("Keydown",teclazo,true);
+			update();
+		});
+		function teclazo(event)
+		{
+		    switch(event.KeyCode)
+			{
+			    case 37:velocidad+=10;
+				        break;
+				case 39:velocidad-=10;
+				        break;
+			}
+		}
+		</script>
+	</head>
+	<body>
+	    <canvas id="lienzo" width="500px" height="332px">
+		<div>
+		    <div style="display:none">
+			<img src="images/photos/carretera.jpg" id="carretera">
+			<img src="images/photos/coche.png" id="coche">
+			<img src="images/photos/llanta.png" id="llanta">
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,56 @@
+<!Doctype>
+<html>
+	<head>
+		<script src="jquery-min.js"></script>
+		<script>
+		var edificio;
+		var contexto;
+		$(document).ready(function (event)
+		{
+			edificio=document.getElementById("edificio");
+			contexto=edificio.getContext("2d");
+			contexto.font="30px tahoma";//Para definir el fondo
+			update();
+		});
+		function update()
+		{
+			contexto.clearRect(0,0,400,400);//Sirve para que en cada interaccion se limpie el canvas
+			contexto.beginPath(); //iniciar ruta
+			contexto.strokeStyle="red"; //color de línea
+			contexto.fillStyle="#000000";
+			contexto.lineWidth=2; //grosor de línea
+			contexto.arc(150,150,150,0,2*Math.PI,false); //círculo completo.
+			contexto.stroke();
+			contexto.fill();
+			contexto.closePath();
+			var fecha=new Date();
+			var milis=fecha.getMilliseconds();//Extrae los milisegundos
+			var sec=fecha.getSeconds();//Extrae los milisegundos
+			var min=fecha.getMinutes();//Extrae los milisegundos
+			var hor=fecha.getHours();//Extrae los milisegundos
+			dibujarCirculo(milis,1000,80);
+			dibujarCirculo(sec,60,100);
+			dibujarCirculo(min,60,120);
+			dibujarCirculo(hor,24,140);
+			var texto=hor+":"+min+":"+sec+":"+milis;
+			contexto.fillStyle="#40FFFF";
+			contexto.fillText(texto,95,160);
+			setTimeout(update,10);
+		
+		}
+		function dibujarCirculo(val,max,radio)
+		{
+		    var prop=val/max;
+            contexto.beginPath();	
+            contexto.strokeStyle="red"; 
+            contexto.arc(150,150,radio,0,prop*2*Math.PI,false);
+            contexto.lineWidth=10;	
+            contexto.stroke();
+			contexto.closePath();			
+		}
+		</script>
+	</head>
+	<body>
+	    <canvas id="edificio" width="400px" height="400px">
+	</body>
+</html>

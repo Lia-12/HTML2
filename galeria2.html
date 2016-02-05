@@ -1,0 +1,99 @@
+<!doctype>
+<html>
+    <head>
+		<style>
+			
+			#galeria
+			{
+				position:relative;
+				width:960px;
+				height:720px;
+			}  
+			#marco
+			{
+			    position:absolute;
+				
+			}
+			#botonanterior
+			{
+			    position:absolute;
+				top:50%;
+				left:20px;
+				float:left;
+			}
+			#botonsiguiente
+			{
+			    position:absolute;
+				top:50%;
+				right:20px;
+				float:right;
+			}
+			.foto
+			{
+			    position:absolute;
+			    width:960px;
+				height:720px;
+			}
+		</style>
+		<script src="jquery-min.js"></script>
+		<script>
+			var fotos=[
+			            "images/photos/birdy1.jpeg",
+						"images/photos/birdy2.jpeg",
+						"images/photos/birdy3.jpeg",
+						"images/photos/birdy4.jpeg",
+						"images/photos/birdy5.jpeg",
+						"images/photos/birdy6.jpeg",
+						"images/photos/birdy7.jpeg",
+						"images/photos/birdy8.jpeg",
+						"images/photos/birdy9.jpeg"
+					  ];
+			var indiceFoto=-1;
+			function fotoSiguiente()
+			{
+				indiceFoto++;
+				if(indiceFoto>fotos.length)
+				{
+				    indiceFoto=0;
+					
+				}
+				actualizarFoto();
+				console.log("indice" +indiceFoto);
+			}
+			function fotoAnterior()
+			{
+				indiceFoto++;
+				if(indiceFoto-1>fotos.length)
+				{
+					
+				}
+				actualizarFoto();
+				console.log("indice" +indiceFoto);
+			}
+			function actualizarFoto()
+			{
+			    var fotoNueva=$("<img>");
+				fotoNueva.attr("class","foto");
+				fotoNueva.attr("scr",fotos[indiceFoto]);
+				fotoNueva.hide();
+				$("contenedorFotos").append(fotoNueva);
+				fotoNueva.fadeIn();
+			}
+			function automatico()
+			{
+			}
+		</script>
+	</head>
+	<body>
+	    <h3>
+	    <div id="BarraInicio"></div>
+		<div>
+		</h3>
+		<div id="galeria">
+		<div id="contenedorFotos"></div>
+		<img src="images/photos/marco.png" id="marco"/>
+		<a href="javascript:fotoAnterior()"><img src="images/photos/anterior.png" id="botonanterior"/></a>
+		<a href="javascript:fotoSiguiente()"><img src="images/photos/siguiente.png" id="botonsiguiente"/></a>
+		</div>
+	</body>
+</html>

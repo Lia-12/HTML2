@@ -1,0 +1,43 @@
+<!doctype> 
+<html>
+	<head>
+		<title>Padre</title>
+		<style>
+		.padre
+		{
+			top:100px;
+			left:50px;
+			position:absolute;
+			
+			width:500px;
+			height:600px;
+			background-color:black;
+		}
+		.hijo
+		{
+		    position:absolute;
+			width:200px;
+			height:200px;
+			background-color:yellow;
+		}
+		.estorbo
+	    {
+		    position:fixed;
+			left:5px;
+			top:200px;
+			width:700px;
+			height:100px;
+			background-color:red;
+		}
+		</style>
+	</head>
+	
+	<body> 
+	 
+		<div class="padre">
+		<div class="estorbo"></div>
+		<div class="hijo" style="left:10px;top:20px;"></div>
+		<div class="hijo" style="bottom:10px;right:10px;"></div>
+		</div>
+	</body>
+</html>

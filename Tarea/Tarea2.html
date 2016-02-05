@@ -1,0 +1,63 @@
+<!doctype>
+<html>
+	<head>
+	    <style>
+		    .formato
+			{
+			    text-align:center;
+			}
+		    table
+			{
+			    align:center;
+				background-color:lightgrey;
+			}
+		</style>
+	</head>
+	<body>
+    <h1>FORMULARIO DENTRO DE UNA TABLA</h1>
+	    <form id="El formulario" action="registro_mascota.html" method="POST">
+		<table border="2" align="center">
+		    <tr>
+			<td>Nombre:
+			<td><input type="text" name="cajanombre" id="cajanombre" maxlength="15"></td><br>
+			</tr>
+			<tr>
+			</td>
+			</td>
+			</tr>
+			<td>Genero:</td>
+			<td>
+			        <input type="radio" name="genero" id="genero1"/>
+					<label for="genero1">Hembra</label>
+					<input type="radio" name="genero" id="genero2"/>
+					<label for="genero2">Macho</label>	
+			</td>
+			</tr>
+			<tr>
+			<td>Raza:
+			<td><select name="mascotas">
+						<optgroup label="Raza Grande">
+							<option value="Max">Aleman</option>
+							<option value="Copito">Grandaness</option>
+							<option value="Aleman">Dalmata</option>
+						</optgroup>	
+						<optgroup label="Raza Pequeña">
+							<option value="Max">Peluche</option>
+							<option value="Copito">Chihuahua</option>
+							<option value="Aleman">french</option>
+						</optgroup>	
+			</select>
+			</td>
+			</td>
+            </tr>
+			<tr>			
+			<td>Edad:</td>
+			<td><input type="number" name="edad" id="numero"/></td>
+			</tr>
+			<tr>
+			<td colspan="2" class="formato"><input type="submit" id="sumit" action="mascotas.html"/></td>
+		    </tr>
+		</table>
+		</form>
+	</body>
+</html>

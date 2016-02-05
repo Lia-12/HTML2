@@ -1,0 +1,67 @@
+<!Doctype>
+<html>
+	<head>
+		<script src="jquery-min.js"></script>
+		<script>
+		var edificio;
+		var contexto;
+		$(document).ready(function (event)
+		{
+			edificio=document.getElementById("edificio");
+			contexto=edificio.getContext("2d");
+			contexto.fillStyle="#000000";
+			contexto.fillRect(0, 0, 600, 900);
+			update();
+		});
+		function update()
+		{
+		    
+			//PisoArriba
+			contexto.fillStyle="#1B2459";
+			contexto.fillRect(300,20,10,30);
+			//PisoArriba
+			contexto.fillStyle="#1B2459";
+			contexto.fillRect(250,40,110,30);
+			//PisoArriba
+			contexto.fillStyle="#1B2459";
+			contexto.fillRect(227,70,150,30);
+			//Edificio
+			contexto.fillStyle="#1B2459";
+			contexto.fillRect(200,90,200,380);
+		    //Base
+			contexto.fillStyle="#1B2459";
+			contexto.fillRect(175,460,250,20);
+			//Base
+			contexto.fillStyle="#1B2459";
+			contexto.fillRect(150,480,300,20);
+			var top=100;
+			var left=210;
+			var anchoVentana=18;
+			var altoVentana=18;
+			var divVert=20;
+			var divHoriz=10;
+			contexto.fillStyle="#FFFF40";
+			for(var i=0;i<divVert;i++)
+			{
+			    for(var j=0;j<divHoriz;j++)
+				{
+				    contexto.fillStyle=Math.random()<0.8?contexto.fillStyle="#FFFF40":contexto.fillStyle="#383901";
+				    contexto.fillRect
+					(   left+j*anchoVentana,
+					    top+i*altoVentana,
+                        anchoVentana-2,
+                        altoVentana-2						
+					);
+				}
+			}
+			{
+			    setTimeout(update,1000);
+			}
+		}
+		
+		</script>
+	</head>
+	<body>
+	    <canvas id="edificio" width="600px" height="500px">
+	</body>
+</html>

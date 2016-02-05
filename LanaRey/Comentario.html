@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Comentario</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="jquery-min.js"></script>
+		<link rel="stylesheet" type="text/css" href="style/Pagina.css">
+	<script>
+            function procesaError(error)
+            {
+                console.log("Error al comunicarse con el servidor");
+                alert("Ocurrio un error al eviar el comentario.");
+            }
+            function procesaResultado(resultado)
+            {
+                console.log("Procesando respuesta del servidor");
+                if(true === resultado)
+                {
+                    alert("Tu comentario ha sido enviado. Gracias!");   
+                }
+                else
+                {
+                    alert("No se ha podido eviar el comentario.");
+                }
+                    
+            }
+            function enviarComentario()
+            {
+                var emailRemitente=$("#emailRemitente").val();
+                var nombreRemitente=$("#nombreRemitente").val();
+                var contenido=$("#contenido").val();
+                
+                console.log("Enviando comentario al servidor");
+                $.getJSON
+                (
+                    "ReceptorComentarios",
+                    {
+                        emailRemitente:emailRemitente,
+                        nombreRemitente:nombreRemitente,
+                        contenido:contenido
+                    },
+                    procesaResultado
+                ).error(procesaError);
+            }
+            
+        </script> 
+       		
+    </head>
+    <body>
+		    <div id="BarraInicio">
+
+		<form method="get" action="Contacto.html">
+	        <input class="flotantes"type="image"
+			src="images/botones/Bcontacto.png">
+		</form>
+		
+		<form method="get" action="Comentario.html">
+	        <input class="flotantes"type="image"
+			src="images/botones/Bcomentario.png">
+		</form>
+		
+		<form method="get" action="galeria.html">
+	        <input class="flotantes"type="image"
+			src="images/botones/galeria.png">
+		</form>
+		
+		<form method="get" action="secciones.html">
+	        <input class="flotantes"type="image"
+			src="images/botones/Bsecciones.png">	
+		</form>
+		
+		<form method="get" action="Pagina2.html">
+	        <input class="flotantes"type="image"
+			src="images/botones/Bprincipal.png">
+		</form>
+		
+	    
+		
+		</div>
+		<div style="background-color:#4C948D;width:240px;height:1000px;float:right;"><center></center></div>
+		<div style="background-color:#4C948D;width:240px;height:1000px;float:left;"><center></center></div>
+        
+		<div style="position: absolute;left: 950px; top:130px; z-index: 1;"> 
+			<img width="70px" height="130px" src="images/sprites/lapiz.png"/>
+		</div> 
+        <div style="position: absolute;left:300px; top:350px; z-index: 1;"> 
+			<img width="250px" height="250px" src="images/sprites/email.png"/>
+		</div> 
+
+		
+        <div style="font-size:16px;font-family:tahoma;color:#6D94CA;font-weight:bold;position:absolute;top:250px;left:500px;">Email:</div><br>
+        <input type="email" id="emailRemitente" class="al" style="top:250px;"><br>
+        <div style="font-size:16px;font-family:tahoma;color:#6D94CA;font-weight:bold;position:absolute;top:300px;left:500px;">Nombre:</div><br>
+        <input type="text" id="nombreRemitente" class="al" style="top:300px;"><br>
+        <div style="font-size:16px;font-family:tahoma;color:#6D94CA;font-weight:bold;position:absolute;top:350px;left:500px;">Comentario:</div><br>
+        <textarea id="contenido" style="position:absolute;left:600px;top:250px;width:300px;height:200;"></textarea><br>
+        <input type="button" value ="Enviar" class="al" style="top:500px;"onclick="enviarComentario()">
+        	
+    </body>
+</html>

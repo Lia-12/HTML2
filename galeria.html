@@ -1,0 +1,45 @@
+<!doctype>
+<html>
+	<head>
+		<style>
+		    #galeria
+			{
+			    width:600px;
+				height:400px;
+				position:relative;
+				border:1px solid black;
+				overflow:hidden; 
+			}
+			img
+			{
+			    width:600px;
+				height:400px;
+				position:absolute;
+				top:0px;
+				left:0px;   
+			}
+		</style>
+		<script src="jquery-min.js"></script>
+		<script>
+		    function salir(id)
+			{
+			    console.log("se presiono"+id);
+				$("#"+id).fadeOut();
+			}
+			function deslizar(id)
+			{
+			    console.log("se presiono"+id);
+				$("#"+id).slideUp();
+			}
+		</script>
+	</head>
+	<body>
+        <div id="galeria">
+		    <img src="images/photos/foto1.jpg" id="foto1" onclick="salir(id)"/>
+			<img src="images/photos/foto2.jpg" id="foto2" onclick="deslizar(id)"/>
+			<img src="images/photos/foto3.jpg" id="foto3" onclick="salir(id)"/>
+			<img src="images/photos/foto4.jpg" id="foto4" onclick="deslizar(id)"/>
+			<img src="images/photos/foto5.jpg" id="foto5" onclick="salir(id)"/>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,57 @@
+<!doctype>
+<html>
+	<head>
+		<style>
+            #cancha
+			{
+			    width:800px;
+				height:600px;
+				position:relative;
+				border:10px solid yellow;
+				background-image:url("PinPong/fondo.jpg");
+			}
+			#pelota
+			{
+			    width:100px;
+				height:100px;
+				position:absolute;
+			}
+		</style>
+		<script src="jquery-min.js"></script>
+		<script>
+			var impulsoH=20;
+			var impulsoV=20;
+			var posicionH=100;
+			var posicionV=100;
+			
+			function moverPelota()
+			{
+				var pelota=$("#pelota");
+				pelota.css("top",posicionV);
+				pelota.css("left",posicionH);
+				validaCoordenadas();
+				posicionH+=impulsoH;
+				posicionV+=impulsoV;
+				setTimeout(moverPelota,10);
+				console.log("SE REALIZO")
+			}
+			function validaCoordenadas()
+			{
+			    if(posicionH>900 || posicionH<0)
+				{
+				    impulsoH*=-1;
+				}
+				if(posicionV>600 || posicionH<0)
+				{
+				    impulsoV*=-1;
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="cancha">
+		    <img id="pelota" src="PinPong/esfera.png"/>
+		</div>
+		<input type="button" value="Mover" onclick="moverPelota()"/>
+	</body>
+</html>

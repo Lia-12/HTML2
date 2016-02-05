@@ -1,0 +1,30 @@
+#BarraInicio
+{
+    position:fixed;
+	width:100%;
+	height:60%;
+	background-color:blue;
+	opacity:0.8;
+	color:white;
+	top:0px;
+	left:0px;
+}
+#contenido
+{
+    width:960px;
+	padding:5px;
+	position:relative;
+	margin:0px auto;
+	background-color:yellow;
+	min-height:100px;
+}
+body
+{
+    background-color:black;
+	background-image:url("../images/nubes.png");
+	font-family:verdana;
+	font-size:11px;
+	color:#101010;
+	margin:0px;
+	padding:0px;
+}

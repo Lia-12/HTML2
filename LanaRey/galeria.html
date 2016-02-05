@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+   <head>
+   <link rel="stylesheet" type="text/css" href="style/Pagina.css">
+	<title>Galeria</title>
+
+	<script src="jquery-min.js"></script>
+	 <style>
+		#galeria{
+		 width:960px;
+		 height:720px;
+		 position:relative;
+		}
+		#marco{
+		 position:absolute;
+		 top:50px;
+		 left:350px;
+		 width:650px;
+		 height:500px;
+		}
+		.foto
+		{
+		position:absolute;
+		 width:600px;
+		 height:450px;
+		 top:60px;
+		left:380px;
+		}
+		#botonanterior{
+		position:absolute;
+		width:70px;
+		height:70px;
+		top:250px;
+		left:360px;
+		}
+		#botonsiguiente{
+		position:absolute;
+		width:90px;
+		height:90px;
+		top:250px;
+		left:920px;
+	    }
+	</style>
+	<script>
+	var indicefoto=-1;
+	var fotos=[
+           "images/photos/Lana1.jpg",
+		   "images/photos/Lana2.jpg",
+		   "images/photos/lana4.jpg",
+		   "images/photos/lana5.jpg",
+		   "images/photos/Lana-back.png",
+		   "images/photos/Lana-back2.jpg",
+		   "images/photos/Lanaback3.jpg"
+	];
+	function actualizarfoto()
+	{
+	 var fotonueva = $("<img>");
+	 fotonueva.attr("class","foto");
+	 fotonueva.attr("src",fotos[indicefoto]);
+	 fotonueva.hide();
+	 $("#contenedorfotos").append(fotonueva);
+	 fotonueva.fadeIn();
+	 console.log(fotos[indicefoto]);
+	}
+  	function fotosiguiente()
+	{
+	 indicefoto++;
+	 if(indicefoto > fotos.length)
+	 {
+	  indicefoto=0;
+	 }
+	 console.log(indicefoto);
+	 actualizarfoto();
+	}
+	function fotoanterior()
+	{
+	 indicefoto--;
+	 if(indicefoto < 0)
+	 {
+	  indicefoto=7;
+	 }
+	 console.log(indicefoto);
+	 actualizarfoto();
+	}
+	
+	
+	</script> 
+   </head>
+<body>
+<body>
+	    
+	    <div id="BarraInicio">
+
+		<form method="get" action="Contacto.html">
+	        <input class="flotantes"type="image"
+			src="images/botones/Bcontacto.png">
+		</form>
+		
+		<form method="get" action="Comentario.html">
+	        <input class="flotantes"type="image"
+			src="images/botones/Bcomentario.png">
+		</form>
+		
+		<form method="get" action="galeria.html">
+	        <input class="flotantes"type="image"
+			src="images/botones/galeria.png">
+		</form>
+		
+		<form method="get" action="secciones.html">
+	        <input class="flotantes"type="image"
+			src="images/botones/Bsecciones.png">	
+		</form>
+		
+		<form method="get" action="Pagina2.html">
+	        <input class="flotantes"type="image"
+			src="images/botones/Bprincipal.png">
+		</form>
+		
+	    
+		
+		</div>
+		<div style="background-color:#4C948D;width:240px;height:1000px;float:right;"><center></center></div>
+		<div style="background-color:#4C948D;width:240px;height:1000px;float:left;"><center></center></div>
+		
+		<div id="galeria">
+			<div id="contenedorfotos">
+			</div>
+			<img src="images/sprites/marco.png" id="marco">
+			<a href="javascript:fotoanterior()"><img src="images/botones/boton.png" id="botonanterior"></a>
+			<a href="javascript:fotosiguiente()"><img src="images/botones/boton2.png" id="botonsiguiente"></a>	
+		</div>
+</body>
+</html>

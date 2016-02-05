@@ -1,0 +1,157 @@
+<!Doctype>
+<html>
+	<head>
+		<script src="jquery-min.js"></script>
+		<script>
+		        //tablero
+				var FILAS=20;
+				var COLUMNAS=20;
+				var TAM_CUADRO=30;
+				//mover serpiente
+				var ARRIBA=38;
+				var ABAJO=40;
+				var IZQUIERDA=37;
+				var DERECHA=39;
+				//Para guardar las imagenes
+				var bg;
+				var imagenCabeza;
+				var imagenCuerpo;
+				var imagenComida;
+				var imagenPerdiste;
+				//Direccion en que se mueve la serpiente
+				var direccion=ARRIBA;
+				//Para indicar que perdiste
+				var perdiste=false;
+				//Puntaje
+				var score=0;
+				//para la posicion de los nodos de la serpiente
+				var posicionComida=null;
+				var serpiente=0;
+				//Canvas y contexto
+				var canvas;
+				var c;
+				
+				
+				function inicializaSerpiente()
+				{
+				    serpiente=[{x:10,y:10}];
+					for(var i=0;i<5;i++)
+					{
+					    alargaCola();
+					}
+				}
+		        function alargaCola()
+				{
+				    var ultimoNodo=serpiente[serpiente.length-1];
+					serpiente.push({x:ultimoNodo.x,y:ultimoNodo.y});
+				}
+				function teclaPresionada(evento)
+				{
+				    direccion=evento.keyCode;
+				}
+				function dibujaImagen(imagen,x,y)
+				{
+				    c.drawImgen(imagen,x*TAM_CUADRO,y*TAM_CUADRO);
+				}
+				function crearComida()
+				{
+				    var nuevaX=Math.round(Math.random()*(COLUMNAS-1));
+					var nuevaY=Math.round(Math.random()*(FILAS-1));
+					console.log("Nueva comida en"+nuevaX+","+nuevaY);
+					posicionComida={x:nuevaX,y:nuevaY};
+				}
+				function updateIA()
+				{
+				    var cabeza=serpiente[0];
+					for(var i=serpiente.length-1;i>0;i--);
+					{
+					    serpiente[i].x=serpiente[i-1].x;
+						serpiente[i].y=serpiente[i-1].y;
+					}
+					switch(direccion)
+					{
+					    case DERECHA:cabeza.x++;
+						break;
+						case IZQUIERDA:cabeza.x--;
+						break;
+						case ARRIBA:cabeza.y--;
+						break;
+						case ABAJO:cabeza.y++;
+						break;
+					}
+					if(cabeza.x==posicionComida.x && cabeza.y==posicionComida.y)
+					{
+					    score+=100;
+						crearComida();
+						alargaCola();
+					}
+					for(var i=1;i<serpiente.length;i++);
+					{
+					    var nodo=serpiente[i];
+						if(cabeza.x==nodo.x && cabeza.y==nodo.y)
+						{
+						    perdiste=true;
+						}
+					}
+					if(serpiente[0].x<0 || serpiente[0].x>=COLUMNAS || serpiente[0].y<0 || serpiente[0].y>=FILAS)
+					{
+					    perdiste=true;
+					}
+				}
+				function update()
+				{
+				    c.drawImage(bg,0,0);
+					updateIA();
+					dibujaImagen(imagenCabeza,serpiente[0].x,serpiente[0].y);
+					for(var i=1;i<serpiente.length;i++)
+					{
+					    dibujaImagen(imagenCuerpo,serpiente[i].x,serpiente[i].y);
+					}
+					if(posicionComida!=null)
+					{ 
+					    dibujaImagen(imagenComida,posicionComida.x,posicionComida.y);
+					}
+					c.fillText("SCORE"+score,25,45);
+					c.strokeText("SCORE"+score,25,45);
+				    if(perdiste)
+					{
+					    dibujaImagen(imagenPerdiste,3,7);
+						return;
+					}
+					setTimeout(update,100);
+				}
+				function inicializacion()
+				{
+				    window.addEventListener("keydown",teclaPresionada,true);
+				    canvas=document.getElementById("miCanvas");
+					c=canvas.getContext("2d");
+					bg=document.getElementById("bg");
+					imagenCabeza=document.getElementById("cabeza");
+					imagenCuerpo=document.getElementById("cuerpo");
+					imagenComida=document.getElementById("comida");
+					imagenPerdiste=document.getElementById("perdiste");
+					c.fillStyle="#FFFFFF";
+					c.strokeStyle="#000000";
+					c.font="bold 26px 'Arial'";
+					inicializaSerpiente();
+					crearComida();
+					update();
+				}
+				$(document).ready(inicializacion);
+		</script>
+	</head>
+	<body>
+	    <canvas id="miCanvas" width="600" height="600">
+		<div>
+		    <div style="display:none">
+			<img src="images/sprites/bg.jpg" id="bg">
+			<img src="images/sprites/cabeza.png" id="cabeza">
+			<img src="images/sprites/cuerpo.png" id="cuerpo">
+			<img src="images/sprites/comida.png" id="comida">
+			<img src="images/sprites/perdiste.png" id="perdiste">
+			</div>
+		</div>
+	</body>
+</html>
+
+<audio src="archivo.wav" id="sonido1"/>

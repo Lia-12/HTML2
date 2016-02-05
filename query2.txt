@@ -1,0 +1,27 @@
+<!doctype>
+<html>
+	<head>
+		<script src="jquery_min.js"></script>
+		<script>
+			function cambiaFondo()
+			{
+				$(#contenido).css("background-color","red");
+			}
+			function cambiarColorTexto()
+			{
+			    $(#contenido).css("color","blue");
+			}
+			function cambiarTamano(var tamano)
+			{
+			    $(#contenido).css("font-size","tamano");
+			}
+		</script>
+	</head>
+	<body>
+			<div id="contenido">
+			</div>
+			<input type="button" name="Fondo" value="Boton" onclick="cambioFondo()"/>
+			<input type="button" name="Texto" value="Boton" onclick="cambiarColorTexto()"/>
+			<input type="button" name="Tamaño" value="Boton" onclick="cambiarTamano()"/>
+	</body>
+</html> 
